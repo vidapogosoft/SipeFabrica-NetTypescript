@@ -1,0 +1,54 @@
+<div>
+  <h1>CRUD productos</h1>
+  @if(hayregistros())
+  {
+    <table>
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Descripcion</th>
+          <th>Precio</th>
+          <th>Borrar</th>
+          <th>Seleccionar</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(art of articulos; track art.codigo)
+        {
+          <tr>
+            <td>{{art.codigo}}</td>
+            <td>{{art.descripcion}}</td>
+            <td>{{art.precio}}</td>
+            <td><button (click)="borrar(art.codigo)" >Borrar</button></td>
+            <td><button (click)="seleccionar(art)" >Seleccionar</button></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }@else {
+    <p>No hay Articulos</p>
+  }
+
+  <br/>
+
+  <div>
+      <p>
+        Codigo: <input type="number" [(ngModel)] = "art.codigo" />
+      </p>
+      <p>
+        Producto: <input type="text" [(ngModel)] = "art.descripcion" />
+      </p>
+      <p>
+        Precio: <input type="number" [(ngModel)] = "art.precio" />
+      </p>
+      <br/>
+      <p>
+        <button (click)="agregar()" >Agregar</button>
+        <button (click)="modificar()" >Modificar</button>
+      </p>
+  </div>
+
+</div>
+
+
+<router-outlet/>

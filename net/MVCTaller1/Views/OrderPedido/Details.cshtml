@@ -1,0 +1,45 @@
+﻿@model MVCTaller1.Models.OrderPedido
+
+<h1>Detalle de la Orden de Pedido</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <label>Num.Orden:</label>
+        <h2>@Html.DisplayFor(i=> i.IdOrderCab)</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <label>Fecha Pedido:</label>
+        <h2>@Html.DisplayFor(i => i.FechaIngreso)</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <td>@Html.DisplayFor(i=> i.CodTienda)</td>
+                <td>@Html.DisplayFor(i => i.Tienda)</td>
+                <td>@Html.DisplayFor(i => i.Observacion)</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <p>
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="col-md-6">
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+    </div>
+
+}

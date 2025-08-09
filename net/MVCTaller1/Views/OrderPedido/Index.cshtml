@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MVCTaller1.Models.OrderPedido>
+
+<h1>Consulta de Ordenes de Pedido</h1>
+
+<p>
+    @Html.ActionLink("Crear Orden","Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Num.Order</th>
+        <th>Cod.Tienda</th>
+        <th>Tienda</th>
+        <th>Fecha</th>
+        <th></th>
+    </tr>
+
+    @foreach(var itemmodel in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(i=> itemmodel.IdOrderCab)
+            </td>
+            <td>
+                @Html.DisplayFor(i => itemmodel.CodTienda)
+            </td>
+            <td>
+                @Html.DisplayFor(i => itemmodel.Tienda)
+            </td>
+            <td>
+                @Html.DisplayFor(i => itemmodel.FechaIngreso)
+            </td>
+            <td>
+                @Html.ActionLink("Pedido", "Details", new {itemmodel.IdOrderCab})
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,68 @@
+﻿@using System.Net.Http.Headers
+@using Newtonsoft.Json
+
+@page "/Orders/Details/{IdOrderCab:int}"
+
+<h3>Orden de Pedido</h3>
+
+<div class="container">
+    <div class="col-md-12">
+
+        @if (order == null)
+        {
+            <span>NO EXISTE DETALLES DEL REGISTRO</span>
+        }
+        else
+        {
+            <div class="card-body">
+                <div class="col-md-4">
+                    <label>NUM.ORDER: @order.IdOrderCab</label>
+                </div>
+
+                <div class="col-md-4">
+                    <label>TIENDA: @order.Tienda</label>
+                </div>
+
+                <div class="col-md-4">
+                    <label>OBSERVACION: @order.Observacion</label>
+                </div>
+
+            </div>
+        }
+
+     </div>
+</div>
+
+
+
+@code {
+
+    [Parameter] public int IdOrderCab { get; set; }
+    public Models.OrderPedido? order { get; set; }
+    string BaseURL = "http://localhost:47903/";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargaDatos(IdOrderCab);
+    }
+
+    private async Task CargaDatos(int IdOrderCab)
+    {
+        using (var client = new HttpClient())
+        {
+            client.BaseAddress = new Uri(BaseURL);
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            HttpResponseMessage res = await client.GetAsync("api/Orders/orderobject/" + IdOrderCab);
+
+            if (res.IsSuccessStatusCode)
+            {
+                var Response = res.Content.ReadAsStringAsync().Result;
+
+                order = JsonConvert.DeserializeObject<Models.OrderPedido>(Response);
+            }
+
+        }
+    }
+}

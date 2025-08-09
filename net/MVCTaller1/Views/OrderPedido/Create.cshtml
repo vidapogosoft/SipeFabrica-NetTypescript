@@ -1,0 +1,53 @@
+﻿@model MVCTaller1.Models.OrderPedido
+
+<h1>Nueva Orden de Pedido</h1>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <hr />
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger"})
+
+    <div class="row">
+        <div class="form-control">
+            <label>Cod. Tienda:</label>
+            <div class="col-md-6">
+                @Html.EditorFor(a=> a.CodTienda, new { @class = "form-control"})
+                @Html.ValidationMessageFor(a=> a.CodTienda, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-control">
+            <label>Tienda:</label>
+            <div class="col-md-6">
+                @Html.EditorFor(a => a.Tienda, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Tienda, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-control">
+            <label>Observacion:</label>
+            <div class="col-md-6">
+                @Html.EditorFor(a => a.Observacion, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Observacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <input type="submit" value="Grabar Orden" class="btn btn-primary" />
+    </div>
+
+}
+
+<div class="row">
+    <p>
+        @Html.ActionLink("Regresar", "Index")
+    </p>
+</div>

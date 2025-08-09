@@ -1,0 +1,18 @@
+<div>
+  <p>Nombre de la Persona:  {{nombre}} </p>
+  <p>Email:  {{email}}</p>
+  @if (activo) {
+    <p>Esta Activo.</p>
+    } @else {
+    <p>Inactivo.</p>
+    }
+
+    <table border="1">
+      @for(sueldo of sueldos; track sueldos) {
+      <tr>
+        <td>{{sueldo}}</td>
+      </tr>
+      }
+    </table>
+
+</div>
